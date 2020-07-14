@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return [
-        'app' => 'Laravel 6 API Boilerplate',
-        'version' => '1.0.0',
-    ];
+    return view('welcome');
+});
+
+Route::prefix('api')->group(function () {
+    Route::resource('categories', 'Category\CategoryController');
+    Route::resource('products', 'Product\ProductController');
 });
