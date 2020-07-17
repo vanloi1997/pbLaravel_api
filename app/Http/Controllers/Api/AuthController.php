@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Users;
-use App\User;
+use Illuminate\Hashing\BcryptHasher;
+
 class AuthController extends Controller
 {
     //
@@ -24,20 +25,22 @@ class AuthController extends Controller
         $user->save();
         return response()->json(['message' => 'Successfully created user!!'], 201);
     }
-    public function login(Request $request){
-        $request->validate([
+    public function login(Request $req)
+    {
+        $req->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        $credentials = request(['email', 'password']);
-        if(!Auth::attempt($credentials))
+        $credentials = $req->only(['email', 'password']);
+        if(!Auth::attempt($credentials)){
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
-        $user = $request->user();
+        }
+        $user = $req->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
-        if ($request->remember_me)
+        if ($req->remember_me)
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
         return response()->json([
@@ -47,5 +50,24 @@ class AuthController extends Controller
                 $tokenResult->token->expires_at
             )->toDateTimeString()
         ]);
+    }
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+    }
+    public function user(Request $request)
+    {   
+        $user = $request->user();
+        $roles = $user->is_admin ? ['admin'] : ['guest'];
+        $user->roles = $roles;
+        return response()->json($request->user());
+    }
+    public function verify(Request $request)
+    {   
+        $token = $request->token;
+
     }
 }

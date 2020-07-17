@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::prefix('api')->group(function () {
-    Route::resource('categories', 'Category\CategoryController');
-    Route::resource('products', 'Product\ProductController');
-});
+// Route::prefix('api')->group(function () {
+//     Route::resource('categories', 'Category\CategoryController');
+//     Route::resource('products', 'Product\ProductController');
+// });
