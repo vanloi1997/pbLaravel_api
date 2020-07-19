@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\BaseModel;
 
-class ProductType extends Model
+class ProductType extends BaseModel
 {
     //
+    protected $table = 'product_types';
 }
