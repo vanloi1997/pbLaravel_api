@@ -34,7 +34,7 @@ class AuthController extends Controller
         $credentials = $req->only(['email', 'password']);
         if(!Auth::attempt($credentials)){
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Email Or Password Was Not In Correct!!!'
             ], 401);
         }
         $user = $req->user();
@@ -64,10 +64,5 @@ class AuthController extends Controller
         $roles = $user->is_admin ? ['admin'] : ['guest'];
         $user->roles = $roles;
         return response()->json($request->user());
-    }
-    public function verify(Request $request)
-    {   
-        $token = $request->token;
-
     }
 }

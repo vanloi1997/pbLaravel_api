@@ -14,5 +14,6 @@ class BaseModel extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'isActive' => 'boolean',
     ];
 }

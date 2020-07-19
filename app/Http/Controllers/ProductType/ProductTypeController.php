@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Category;
+namespace App\Http\Controllers\ProductType;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Illuminate\Http\Response;
-use App\Category;
-
-
-class CategoryController extends Controller
+class ProductTypeController extends Controller
 {
     //
     public function index(){

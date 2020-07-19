@@ -15,13 +15,19 @@ class Users extends Authenticatable implements JWTSubject, MustVerifyEmail
     //
     protected $table = 'users';
 
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_admin' => 'boolean',
+        'isActive' => 'boolean',
+        'isAdmin' => 'boolean',
+    ];
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**

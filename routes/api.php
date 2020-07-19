@@ -21,7 +21,9 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'Api\AuthController@user');
         Route::resource('categories', 'Category\CategoryController');
         Route::resource('products', 'Product\ProductController');
+        Route::resource('productsType', 'ProductType\ProductTypeController');
+        Route::resource('users', 'User\UsersController');
     });
 });
-
+Route::get('users/email-check', 'User\UsersController@emailcheck');
 
