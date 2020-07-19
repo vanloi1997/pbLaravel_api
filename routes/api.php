@@ -22,6 +22,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::resource('categories', 'Category\CategoryController');
         Route::resource('products', 'Product\ProductController');
         Route::resource('product-types', 'ProductType\ProductTypeController');
+        Route::resource('providers', 'Providers\ProvidersController');
         Route::resource('users', 'User\UsersController');
     });
 });
