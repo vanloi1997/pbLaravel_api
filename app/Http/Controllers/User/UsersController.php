@@ -13,7 +13,8 @@ class UsersController extends Controller
     //
     public function index(){
         $data = Users::select('is_active as isActive','is_admin as isAdmin','users.*')->orderBy('updated_at','DESC')->get();
-        return response()->json(['items' => $data]);
+        $count = $data->count();
+        return response()->json(['items' => $data,'count' => $count]);
     }
     public function show(Request $req){
         $data = Users::where('id',$req->user)->first();

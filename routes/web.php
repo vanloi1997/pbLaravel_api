@@ -11,11 +11,6 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::prefix('api')->group(function () {
-//     Route::resource('categories', 'Category\CategoryController');
-//     Route::resource('products', 'Product\ProductController');
-// });
+Route::group(['namespace' => 'frontend'], function(){
+    Route::get('','HomeController@index')->name('get.home');
+});

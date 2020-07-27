@@ -14,7 +14,8 @@ class CategoryController extends Controller
     //
     public function index(){
         $data = Category::get();
-        return response()->json(['items' => $data]);
+        $count = $data->count();
+        return response()->json(['items' => $data,'count' => $count]);
     }
     public function show(Request $req){
         $data = Category::where('id',$req->category)->first();
